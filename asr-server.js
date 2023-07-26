@@ -31,10 +31,6 @@ fastify.addHook("onRequest", async (request, reply) => {
 });
 
 fastify.get("/get-asr-output", async function handler(request, reply) {
-  if (currentRequests + 1 > MAX_REQUESTS) {
-    return reply.code(429).send({ error: "Too many requests" });
-  }
-
   const { path } = request.query;
 
   await addRandomRequestLatency();
@@ -44,7 +40,7 @@ fastify.get("/get-asr-output", async function handler(request, reply) {
     return reply.code(404).send({ error: "File not found" });
   }
 
-  if (file.shouldError && Math.random() < FAILURE_RATE) {
+  if (file.shouldError || Math.random() < FAILURE_RATE) {
     return reply.code(500).send({ error: "Internal server error" });
   }
 
