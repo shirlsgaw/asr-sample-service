@@ -2,8 +2,8 @@ import Fastify from "fastify";
 import { TranscriptMocks } from "./mock-transcripts.js";
 
 const DELAY_MS = 5_000;
-const FAILURE_RATE = 1 / 5;
-const MAX_REQUESTS = 3;
+const FAILURE_RATE = 1 / 10;
+const MAX_REQUESTS = 10;
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const addRandomRequestLatency = async () => {
