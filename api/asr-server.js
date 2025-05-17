@@ -33,7 +33,7 @@ fastify.addHook("onRequest", async (request, reply) => {
 fastify.get("/get-asr-output", async function handler(request, reply) {
   const { path } = request.query;
 
-  await addRandomRequestLatency();
+  //await addRandomRequestLatency();
 
   const file = TranscriptMocks.get(path);
   if (!file) {
