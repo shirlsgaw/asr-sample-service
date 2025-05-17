@@ -10,6 +10,20 @@ const addRandomRequestLatency = async () => {
   await sleep(DELAY_MS + Math.random() * DELAY_MS);
 };
 
+const app = Fastify({
+  logger: false,
+});
+
+// Register your application as a normal plugin.
+app.register(routes, {
+  prefix: "/",
+});
+
+export default async (req, res) => {
+  await app.ready();
+  app.server.emit("request", req, res);
+};
+/*
 const fastify = Fastify({
   logger: true,
 });
@@ -44,19 +58,21 @@ fastify.get("/get-asr-output", async function handler(request, reply) {
     return reply.code(404).send({ error: "File not found" });
   }
 
-  /*
   if (file.shouldError || Math.random() < FAILURE_RATE) {
     return reply.code(500).send({ error: "Internal server error" });
   }
-  */
+  
   return { path, transcript: file.text };
 });
 
 try {
   console.log("Starting server..., supported paths:");
   console.log(TranscriptMocks.keys());
-  await fastify.listen({ port: 3000 });
+  //await fastify.listen({ port: 3000 });
+  await app.ready();
+  app.server.emit("request", req, res);
 } catch (err) {
   fastify.log.error(err);
   process.exit(1);
 }
+*/
