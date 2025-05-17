@@ -40,10 +40,11 @@ fastify.get("/get-asr-output", async function handler(request, reply) {
     return reply.code(404).send({ error: "File not found" });
   }
 
+  /*
   if (file.shouldError || Math.random() < FAILURE_RATE) {
     return reply.code(500).send({ error: "Internal server error" });
   }
-
+  */
   return { path, transcript: file.text };
 });
 
