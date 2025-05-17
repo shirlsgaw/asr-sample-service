@@ -9,6 +9,22 @@ const app = Fastify({
   logger: true,
 })
 
+let currentRequests = 0;
+
+app.addHook("onRequest", async (request, reply) => {
+  if (currentRequests + 1 > MAX_REQUESTS) {
+    return reply.code(429).send({ error: "Too many requests" });
+  }
+
+  currentRequests++;
+});
+
+["onResponse", "onRequestAbort"].forEach((hook) => {
+  app.addHook(hook, async (request) => {
+    currentRequests = Math.max(0, currentRequests - 1);
+  });
+});
+
 app.get("/get-asr-output", async function handler(request, reply) {
   const { path } = request.query;
 
