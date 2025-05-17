@@ -1,9 +1,14 @@
 import Fastify from 'fastify'
 import { TranscriptMocks } from "./mock-transcripts.js";
 
-const DELAY_MS = 5_000;
+const DELAY_MS = 0;
 const FAILURE_RATE = 1 / 20;
 const MAX_REQUESTS = 100;
+
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+const addRandomRequestLatency = async () => {
+  await sleep(DELAY_MS + Math.random() * DELAY_MS);
+};
 
 const app = Fastify({
   logger: true,
@@ -28,7 +33,7 @@ app.addHook("onRequest", async (request, reply) => {
 app.get("/get-asr-output", async function handler(request, reply) {
   const { path } = request.query;
 
-  // await addRandomRequestLatency();
+  await addRandomRequestLatency();
 
   const file = TranscriptMocks.get(path);
   if (!file) {
