@@ -30,6 +30,10 @@ fastify.addHook("onRequest", async (request, reply) => {
   });
 });
 
+fastify.get('/', async (req, res) => {
+  return res.status(200).type('text/html').send(html)
+})
+
 fastify.get("/get-asr-output", async function handler(request, reply) {
   const { path } = request.query;
 
