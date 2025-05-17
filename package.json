@@ -9,7 +9,7 @@
   "main": "asr-server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node asr-server.js | pino-pretty"
+    "start": "node api/asr-server.js | pino-pretty"
   },
   "author": "",
   "license": "ISC",
