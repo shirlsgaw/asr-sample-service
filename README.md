@@ -25,4 +25,4 @@ curl 'http://localhost:3000/get-asr-output?path=audio-file-7.wav'
 ```
 
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/starter/fastify&project-name=fastify&repository-name=fastify)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/shirlsgaw/asr-sample-service&project-name=asr-sample-service&repository-name=asr-sample-service)
