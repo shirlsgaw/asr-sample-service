@@ -1,8 +1,26 @@
 import Fastify from 'fastify'
+import { TranscriptMocks } from "./mock-transcripts.js";
 
 const app = Fastify({
   logger: true,
 })
+
+app.get("/get-asr-output", async function handler(request, reply) {
+  const { path } = request.query;
+
+  // await addRandomRequestLatency();
+
+  const file = TranscriptMocks.get(path);
+  if (!file) {
+    return reply.code(404).send({ error: "File not found" });
+  }
+
+  if (file.shouldError || Math.random() < FAILURE_RATE) {
+    return reply.code(500).send({ error: "Internal server error" });
+  }
+
+  return { path, transcript: file.text };
+});
 
 app.get('/', async (req, reply) => {
   return reply.status(200).type('text/html').send(html)
