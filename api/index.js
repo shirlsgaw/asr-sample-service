@@ -1,6 +1,8 @@
 import Fastify from 'fastify'
 import { TranscriptMocks } from "./mock-transcripts.js";
 
+const FAILURE_RATE = 1 / 200000000000;
+
 const app = Fastify({
   logger: true,
 })
