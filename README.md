@@ -1,28 +1,21 @@
-# ASR Sample Service
+# Fastify + Vercel
 
-This implements a mock ASR service for use as part of a takehome interview problem.
+This example shows how to use Fastify with Vercel Functions.
 
-## Setting up the service
+## Demo
 
-### Node
+https://fastify-example.vercel.app/
 
-This service uses node >= 18.0. We recommend using [nvm](https://github.com/nvm-sh/nvm) to install and manage node versions if you don't already have node setup. Once installed you can run `nvm use` within this directory to use the correct node version.
+## Running Locallly
 
-### Dependencies
-
-The primary dependency of this project is Fastify, a node.js webserver framework.
-
-`npm install` will install all dependencies.
-
-### Running the server
-
-`npm start` will spin up the server on `localhost:3000`
-
-### Querying the server
-
-```sh
-curl 'http://localhost:3000/get-asr-output?path=audio-file-7.wav'
+```bash
+npm i
+npm i -g vercel@latest
+vercel dev
 ```
 
+## One-Click Deploy
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/shirlsgaw/asr-sample-service&project-name=asr-sample-service&repository-name=asr-sample-service)
+Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/starter/fastify&project-name=fastify&repository-name=fastify)

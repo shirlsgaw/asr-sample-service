@@ -1,15 +1,8 @@
 {
-      "version": 2,
-      "builds": [
-        {
-          "src": "api/asr-server.js",
-          "use": "@vercel/node"
-        }
-      ],
-      "routes": [
-        {
-          "src": "/(.*)",
-          "dest": "/api/asr-server.js"
-        }
-      ]
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/api"
+    }
+  ]
 }
